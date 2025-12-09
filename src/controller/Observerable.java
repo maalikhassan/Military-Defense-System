@@ -32,14 +32,14 @@ public class Observerable implements MainCaller{
     }
     
     @Override
-    public void setSliderValue(int value) {
+    public void setSliderValue(int value) { 
         if (this.sliderValue!=value) {
             this.sliderValue=value;
             setBtn(sliderValue);
         }
     }
     
-    public void sendMessage(String message){
+    public void sendMessage(String message){ //this sends the message to all observers
         for (Observer observer : observers) {
             observer.setMessage(message);
         }
@@ -49,7 +49,7 @@ public class Observerable implements MainCaller{
         return observers;
     }
 
-    private void setBtn(int sliderValue) {
+    private void setBtn(int sliderValue) {//activate the buttons based on slider values received
         //need to figure out
     }
     

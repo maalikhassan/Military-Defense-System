@@ -107,8 +107,6 @@ public class Helicopter extends javax.swing.JFrame implements Observer,getData{/
         textArea.setRows(5);
         jScrollPane1.setViewportView(textArea);
 
-        msgtextfield.setText("jTextField1");
-
         sendBtn.setText("Send");
         sendBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -232,7 +230,7 @@ public class Helicopter extends javax.swing.JFrame implements Observer,getData{/
     }// </editor-fold>//GEN-END:initComponents
 
     private void positionCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_positionCheckBoxActionPerformed
-        // TODO add your handling code here:
+        // sends 1 if position is checked, else 0 if not checked:
         if (positionCheckBox.isSelected()) {
             observerable.setSliderValue(sliderValue);
         }
@@ -243,6 +241,7 @@ public class Helicopter extends javax.swing.JFrame implements Observer,getData{/
     private void sendBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendBtnActionPerformed
         // TODO add your handling code here:
         observerable.sendMessage("Helicopter : "+ msgtextfield.getText());
+        msgtextfield.setText("");
     }//GEN-LAST:event_sendBtnActionPerformed
 
     private void spinnerSoldierStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_spinnerSoldierStateChanged

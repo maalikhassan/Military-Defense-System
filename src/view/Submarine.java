@@ -56,7 +56,7 @@ public class Submarine extends javax.swing.JFrame implements Observer,getData{
         oxygenSlider = new javax.swing.JSlider();
         jScrollPane1 = new javax.swing.JScrollPane();
         textArea = new javax.swing.JTextArea();
-        jTextField1 = new javax.swing.JTextField();
+        msgtextfield = new javax.swing.JTextField();
         btnSend = new javax.swing.JButton();
         btnTrident = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
@@ -68,7 +68,7 @@ public class Submarine extends javax.swing.JFrame implements Observer,getData{
         lblOxyenVal = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Helicopter");
+        setTitle("Submarine");
 
         jLabel1.setText("Status:");
 
@@ -117,9 +117,12 @@ public class Submarine extends javax.swing.JFrame implements Observer,getData{
         textArea.setRows(5);
         jScrollPane1.setViewportView(textArea);
 
-        jTextField1.setText("jTextField1");
-
         btnSend.setText("Send");
+        btnSend.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSendActionPerformed(evt);
+            }
+        });
 
         btnTrident.setText("Launch Trident-3 Missile");
 
@@ -221,7 +224,7 @@ public class Submarine extends javax.swing.JFrame implements Observer,getData{
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addComponent(jTextField1)
+                .addComponent(msgtextfield)
                 .addGap(18, 18, 18)
                 .addComponent(btnSend, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12))
@@ -269,7 +272,7 @@ public class Submarine extends javax.swing.JFrame implements Observer,getData{
                             .addComponent(lblOxyenVal))))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(msgtextfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSend))
                 .addGap(24, 24, 24))
         );
@@ -307,6 +310,12 @@ public class Submarine extends javax.swing.JFrame implements Observer,getData{
         lblOxyenVal.setText(" "+oxygenSlider.getValue());
     }//GEN-LAST:event_oxygenSliderStateChanged
 
+    private void btnSendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSendActionPerformed
+        // TODO add your handling code here:
+        observerable.sendMessage("Submarine : "+ msgtextfield.getText());
+        msgtextfield.setText("");
+    }//GEN-LAST:event_btnSendActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -327,10 +336,10 @@ public class Submarine extends javax.swing.JFrame implements Observer,getData{
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lblEnergyVal;
     private javax.swing.JLabel lblOxyenVal;
     private javax.swing.JLabel lblStatus;
+    private javax.swing.JTextField msgtextfield;
     private javax.swing.JSlider oxygenSlider;
     private javax.swing.JCheckBox positionCheckBox;
     private javax.swing.JSpinner soldierCountSpinner;
