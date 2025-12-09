@@ -61,6 +61,7 @@ public class Helicopter extends javax.swing.JFrame implements Observer,getData{/
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Helicopter");
+        setResizable(false);
 
         jLabel1.setText("Status:");
 
@@ -121,7 +122,7 @@ public class Helicopter extends javax.swing.JFrame implements Observer,getData{/
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Helicopter");
+        jLabel5.setText("HELICOPTER");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -228,7 +229,7 @@ public class Helicopter extends javax.swing.JFrame implements Observer,getData{/
         );
 
         pack();
-        setLocationRelativeTo(null);
+        setLocation(700, 50); // Top-right corner
     }// </editor-fold>//GEN-END:initComponents
 
     private void positionCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_positionCheckBoxActionPerformed

@@ -60,6 +60,7 @@ public class MainController extends javax.swing.JFrame implements Observer{
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Main Controller");
+        setResizable(false);
 
         jLabel1.setText("Vehicle :");
 
@@ -93,7 +94,7 @@ public class MainController extends javax.swing.JFrame implements Observer{
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Main Controller");
+        jLabel5.setText("MAIN CONTROLLER");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -226,7 +227,7 @@ public class MainController extends javax.swing.JFrame implements Observer{
         );
 
         pack();
-        setLocationRelativeTo(null);
+        setLocation(50, 50); // Top-left corner
     }// </editor-fold>//GEN-END:initComponents
 
     private void AreaClearCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AreaClearCheckBoxActionPerformed

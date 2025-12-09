@@ -70,6 +70,7 @@ public class Tank extends javax.swing.JFrame implements Observer,getData {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Tank");
+        setResizable(false);
 
         jLabel1.setText("Status:");
 
@@ -240,7 +241,7 @@ public class Tank extends javax.swing.JFrame implements Observer,getData {
         );
 
         pack();
-        setLocationRelativeTo(null);
+        setLocation(50, 450); // Bottom-left corner
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSendActionPerformed
