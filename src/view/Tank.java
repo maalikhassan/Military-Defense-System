@@ -84,6 +84,11 @@ public class Tank extends javax.swing.JFrame implements Observer,getData {
         jLabel4.setText("Ammo Count:");
 
         positionCheckBox.setText("Position");
+        positionCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                positionCheckBoxActionPerformed(evt);
+            }
+        });
 
         jSlider1.setMajorTickSpacing(20);
         jSlider1.setOrientation(javax.swing.JSlider.VERTICAL);
@@ -219,6 +224,12 @@ public class Tank extends javax.swing.JFrame implements Observer,getData {
         msgtextfield.setText("");
     }//GEN-LAST:event_btnSendActionPerformed
 
+    private void positionCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_positionCheckBoxActionPerformed
+        // Update position and button states:
+        position = positionCheckBox.isSelected()? 1:0;
+        setButton(sliderValue);
+    }//GEN-LAST:event_positionCheckBoxActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -251,27 +262,19 @@ public class Tank extends javax.swing.JFrame implements Observer,getData {
 
     @Override
     public void setButton(int value) {
+        this.sliderValue = value; // Store the slider value
+        
         if (positionCheckBox.isSelected()) {
-            if (value>=20) {
-                btnShoot.setEnabled(true);
-            }else{
-                btnShoot.setEnabled(false);
-            }
-            if (value>=40) {
-                btnRotateShoot.setEnabled(true);
-            }else{
-                btnRotateShoot.setEnabled(false);
-            }
-            if (value>=60) {
-                btnRadarLive.setEnabled(true);
-            }else{
-                btnRadarLive.setEnabled(false);
-            }
-            if (value>=80) {
-                btnLaunchMissile.setEnabled(true);
-            }else{
-                btnLaunchMissile.setEnabled(false);
-            }
+            btnShoot.setEnabled(value >= 20);
+            btnRotateShoot.setEnabled(value >= 40);
+            btnRadarLive.setEnabled(value >= 60);
+            btnLaunchMissile.setEnabled(value >= 80);
+        } else {
+            // Disable all buttons when position is not selected
+            btnShoot.setEnabled(false);
+            btnRotateShoot.setEnabled(false);
+            btnRadarLive.setEnabled(false);
+            btnLaunchMissile.setEnabled(false);
         }        
     }
 

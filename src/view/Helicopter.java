@@ -231,11 +231,10 @@ public class Helicopter extends javax.swing.JFrame implements Observer,getData{/
 
     private void positionCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_positionCheckBoxActionPerformed
         // sends 1 if position is checked, else 0 if not checked:
-        if (positionCheckBox.isSelected()) {
-            observerable.setSliderValue(sliderValue);
-        }
-        
         position = positionCheckBox.isSelected()? 1:0;
+        
+        // Update button states based on current slider value
+        setButton(sliderValue);
     }//GEN-LAST:event_positionCheckBoxActionPerformed
 
     private void sendBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendBtnActionPerformed
@@ -292,22 +291,17 @@ public class Helicopter extends javax.swing.JFrame implements Observer,getData{/
 
     @Override
     public void setButton(int value) {
+        this.sliderValue = value; // Store the slider value
+        
         if (positionCheckBox.isSelected()) {
-            if (value>=20) {
-                shootBtn.setEnabled(true);
-            }else{
-                shootBtn.setEnabled(false);
-            }
-            if (value>=40) {
-                missileBtn.setEnabled(true);
-            }else{
-                missileBtn.setEnabled(false);
-            }
-            if (value>=60) {
-                laserBtn.setEnabled(true);
-            }else{
-                laserBtn.setEnabled(false);
-            }
+            shootBtn.setEnabled(value >= 20);
+            missileBtn.setEnabled(value >= 40);
+            laserBtn.setEnabled(value >= 60);
+        } else {
+            // Disable all buttons when position is not selected
+            shootBtn.setEnabled(false);
+            missileBtn.setEnabled(false);
+            laserBtn.setEnabled(false);
         }
     }
 

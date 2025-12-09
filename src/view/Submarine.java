@@ -283,11 +283,8 @@ public class Submarine extends javax.swing.JFrame implements Observer,getData{
 
     private void positionCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_positionCheckBoxActionPerformed
         // TODO add your handling code here:
-        if (positionCheckBox.isSelected()) {
-            observerable.setSliderValue(sliderValue);
-        }
-        
         position = positionCheckBox.isSelected()?1:0;
+        setButton(sliderValue);
     }//GEN-LAST:event_positionCheckBoxActionPerformed
 
     private void soldierCountSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_soldierCountSpinnerStateChanged
@@ -353,27 +350,19 @@ public class Submarine extends javax.swing.JFrame implements Observer,getData{
 
     @Override
     public void setButton(int value) {
+        this.sliderValue = value; // Store the slider value
+        
         if (positionCheckBox.isSelected()) {
-            if (value>=20) {
-                btnShoot.setEnabled(true);
-            }else{
-                btnShoot.setEnabled(false);
-            }
-            if (value>=40) {
-                btnSonar.setEnabled(true);
-            }else{
-                btnSonar.setEnabled(false);
-            }
-            if (value>=60) {
-                btnTomahawk.setEnabled(true);
-            }else{
-                btnTomahawk.setEnabled(false);
-            }
-            if (value>=80) {
-                btnTrident.setEnabled(true);
-            }else{
-                btnTrident.setEnabled(false);
-            }
+            btnShoot.setEnabled(value >= 20);
+            btnSonar.setEnabled(value >= 40);
+            btnTomahawk.setEnabled(value >= 60);
+            btnTrident.setEnabled(value >= 80);
+        } else {
+            // Disable all buttons when position is not selected
+            btnShoot.setEnabled(false);
+            btnSonar.setEnabled(false);
+            btnTomahawk.setEnabled(false);
+            btnTrident.setEnabled(false);
         }
     }
 

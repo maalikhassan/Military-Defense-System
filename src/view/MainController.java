@@ -123,6 +123,7 @@ public class MainController extends javax.swing.JFrame implements Observer{
         jSlider2.setMajorTickSpacing(20);
         jSlider2.setPaintLabels(true);
         jSlider2.setPaintTicks(true);
+        jSlider2.setValue(0);
         jSlider2.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jSlider2StateChanged(evt);
