@@ -31,11 +31,14 @@ public class Helicopter extends javax.swing.JFrame implements Observer,getData{/
         missileBtn.setEnabled(false);
         laserBtn.setEnabled(false);
         
-        fuel = sliderFuel.getValue();
-        
-        // Set spinner models to prevent negative values (min=0, max=100, step=1)
+        // Set spinner models FIRST to prevent negative values
         spinnerSoldier.setModel(new javax.swing.SpinnerNumberModel(8, 0, 100, 1));
         spinnerAmmo.setModel(new javax.swing.SpinnerNumberModel(200, 0, 1000, 1));
+        
+        // THEN get the initial values from the models
+        soldiers = (int) spinnerSoldier.getValue();
+        ammo = (int) spinnerAmmo.getValue();
+        fuel = sliderFuel.getValue();
         
         Timer timer = new Timer(4000, new ActionListener() {
             @Override

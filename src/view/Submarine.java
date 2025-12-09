@@ -35,11 +35,14 @@ public class Submarine extends javax.swing.JFrame implements Observer,getData{
         btnTomahawk.setEnabled(false);
         btnTrident.setEnabled(false);
         
-        fuel = fuelSlider.getValue();
-        
-        // Set spinner models to prevent negative values (min=0, max=100, step=1)
+        // Set spinner models FIRST to prevent negative values
         soldierCountSpinner.setModel(new javax.swing.SpinnerNumberModel(80, 0, 100, 1));
         ammoCountSpinner.setModel(new javax.swing.SpinnerNumberModel(500, 0, 1000, 1));
+        
+        // THEN get the initial values from the models
+        soldiers = (int) soldierCountSpinner.getValue();
+        ammo = (int) ammoCountSpinner.getValue();
+        fuel = fuelSlider.getValue();
         
         Timer timer = new Timer(4000, new ActionListener() {
             @Override
@@ -92,25 +95,10 @@ public class Submarine extends javax.swing.JFrame implements Observer,getData{
         jLabel1.setText("Status:");
 
         btnShoot.setText("Shoot");
-        btnShoot.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnShootActionPerformed(evt);
-            }
-        });
 
         btnSonar.setText("Activate Sonar");
-        btnSonar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSonarActionPerformed(evt);
-            }
-        });
 
         btnTomahawk.setText("Launch Tomahawk Missile");
-        btnTomahawk.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTomahawkActionPerformed(evt);
-            }
-        });
 
         lblStatus.setText("Awaiting intel...");
 
@@ -141,7 +129,7 @@ public class Submarine extends javax.swing.JFrame implements Observer,getData{
         oxygenSlider.setOrientation(javax.swing.JSlider.VERTICAL);
         oxygenSlider.setPaintLabels(true);
         oxygenSlider.setPaintTicks(true);
-        oxygenSlider.setValue(80);
+        oxygenSlider.setValue(100);
         oxygenSlider.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 oxygenSliderStateChanged(evt);
@@ -160,11 +148,6 @@ public class Submarine extends javax.swing.JFrame implements Observer,getData{
         });
 
         btnTrident.setText("Launch Trident-3 Missile");
-        btnTrident.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTridentActionPerformed(evt);
-            }
-        });
 
         jPanel1.setBackground(new java.awt.Color(102, 102, 0));
 
@@ -208,7 +191,7 @@ public class Submarine extends javax.swing.JFrame implements Observer,getData{
 
         lblFuelVal.setText("80");
 
-        lblOxyenVal.setText("80");
+        lblOxyenVal.setText("100");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
