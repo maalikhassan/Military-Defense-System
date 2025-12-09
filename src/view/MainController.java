@@ -21,6 +21,7 @@ public class MainController extends javax.swing.JFrame implements Observer{
         this.observerable = observerable;
         optionComboBox.removeAllItems();
 //        optionComboBox.addItem("Select system");
+        optionComboBox.addItem("Select the vehicle");
         optionComboBox.addItem("Helicopter");
         optionComboBox.addItem("Tank");
         optionComboBox.addItem("Submarine");
@@ -135,6 +136,11 @@ public class MainController extends javax.swing.JFrame implements Observer{
         jScrollPane2.setViewportView(mainTxtArea);
 
         privateMsgCheckBox.setText("send private");
+        privateMsgCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                privateMsgCheckBoxActionPerformed(evt);
+            }
+        });
 
         lblPosition.setText(" Receiving...");
 
@@ -246,17 +252,22 @@ public class MainController extends javax.swing.JFrame implements Observer{
     }//GEN-LAST:event_jSlider2StateChanged
 
     private void msgSendBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_msgSendBtnActionPerformed
-        //Main controller messsage button:
+        // Get the message text from the input field
+        String message = "Main Unit: " + mainTextField.getText();
+        
+        // Check if private messaging mode is enabled (checkbox is checked)
         if (privateMsgCheckBox.isSelected()) {
-            int options = optionComboBox.getSelectedIndex();
-            ArrayList<Observer> list = observerable.getObserver();
-            list.get(options).setMessage("Main Unit:"+mainTextField.getText());
-            mainTextField.setText("");
-            
+            // PRIVATE MODE: Send to only ONE selected observer
+            int selectedIndex = optionComboBox.getSelectedIndex(); // Get which observer is selected (0=Select, 1=Helicopter, 2=Tank, 3=Submarine)
+            ArrayList<Observer> observerList = observerable.getObserver(); // Get the list of all observers {main(0),helicopter(1),tank(2),submarine(3)}
+            observerList.get(selectedIndex).setMessage(message); // Send message to ONLY the selected observer ("observerList.get(selectedIndex)." is what specifies which to send to, its kinda like parallel matching)
         } else {
-            observerable.sendMessage("Main Unit: "+mainTextField.getText());
-            mainTextField.setText("");
+            // BROADCAST MODE: Send to ALL observers
+            observerable.sendMessage(message); // This sends the message to every observer in the list
         }
+        
+        // Clear the text field after sending the message
+        mainTextField.setText("");
     }//GEN-LAST:event_msgSendBtnActionPerformed
 
     private void collectInfoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_collectInfoBtnActionPerformed
@@ -278,6 +289,17 @@ public class MainController extends javax.swing.JFrame implements Observer{
         }
         
     }//GEN-LAST:event_collectInfoBtnActionPerformed
+
+    private void privateMsgCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_privateMsgCheckBoxActionPerformed
+        // Enable/disable combo box to provide visual feedback for private messaging mode
+        // When checked, user must select which observer receives the message
+        // When unchecked, message broadcasts to all observers
+//        if (privateMsgCheckBox.isSelected()) {
+//            optionComboBox.setEnabled(true); // Enable selection for private messaging
+//        } else {
+//            optionComboBox.setEnabled(true); // Keep enabled for collect info functionality
+//        }
+    }//GEN-LAST:event_privateMsgCheckBoxActionPerformed
 
     /**
      * @param args the command line arguments

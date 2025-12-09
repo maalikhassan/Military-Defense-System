@@ -294,7 +294,7 @@ public class Helicopter extends javax.swing.JFrame implements Observer,getData{/
         this.sliderValue = value; // Store the slider value
         
         if (positionCheckBox.isSelected()) {
-            shootBtn.setEnabled(value >= 20);
+            shootBtn.setEnabled(value >= 20); // instead of if else we can give the conidition directly here itself instead of true/false
             missileBtn.setEnabled(value >= 40);
             laserBtn.setEnabled(value >= 60);
         } else {
