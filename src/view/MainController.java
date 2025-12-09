@@ -80,8 +80,6 @@ public class MainController extends javax.swing.JFrame implements Observer{
             }
         });
 
-        mainTextField.setText("jTextField1");
-
         msgSendBtn.setText("Send");
         msgSendBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -252,11 +250,11 @@ public class MainController extends javax.swing.JFrame implements Observer{
             int options = optionComboBox.getSelectedIndex();
             ArrayList<Observer> list = observerable.getObserver();
             list.get(options).setMessage("Main Unit:"+mainTextField.getText());
-            mainTxtArea.setText("");
+            mainTextField.setText("");
             
         } else {
             observerable.sendMessage("Main Unit: "+mainTextField.getText());
-            mainTxtArea.setText("");
+            mainTextField.setText("");
         }
     }//GEN-LAST:event_msgSendBtnActionPerformed
 
