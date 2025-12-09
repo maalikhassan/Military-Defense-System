@@ -51,15 +51,15 @@
                                   </Group>
                               </Group>
                           </Group>
-                          <Component id="jCheckBox1" min="-2" pref="84" max="-2" attributes="0"/>
+                          <Component id="positionCheckBox" min="-2" pref="84" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="shootBtn" min="-2" pref="105" max="-2" attributes="0"/>
+                          <Component id="btnShoot" min="-2" pref="105" max="-2" attributes="0"/>
                           <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="rotateShootBtn" max="32767" attributes="0"/>
-                              <Component id="radarLiveBtn" min="-2" pref="105" max="-2" attributes="0"/>
-                              <Component id="launchMissileBtn" min="-2" pref="105" max="-2" attributes="0"/>
+                              <Component id="btnRotateShoot" max="32767" attributes="0"/>
+                              <Component id="btnRadarLive" min="-2" pref="105" max="-2" attributes="0"/>
+                              <Component id="btnLaunchMissile" min="-2" pref="105" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -91,13 +91,13 @@
                   <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Group type="102" attributes="0">
-                              <Component id="shootBtn" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnShoot" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="rotateShootBtn" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnRotateShoot" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="radarLiveBtn" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnRadarLive" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="launchMissileBtn" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnLaunchMissile" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="3" attributes="0">
@@ -115,7 +115,7 @@
                                   <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="32767" attributes="0"/>
-                              <Component id="jCheckBox1" min="-2" max="-2" attributes="0"/>
+                              <Component id="positionCheckBox" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -138,17 +138,17 @@
         <Property name="text" type="java.lang.String" value="Status:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="shootBtn">
+    <Component class="javax.swing.JButton" name="btnShoot">
       <Properties>
         <Property name="text" type="java.lang.String" value="Shoot"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="rotateShootBtn">
+    <Component class="javax.swing.JButton" name="btnRotateShoot">
       <Properties>
         <Property name="text" type="java.lang.String" value="Rotate shoot"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="radarLiveBtn">
+    <Component class="javax.swing.JButton" name="btnRadarLive">
       <Properties>
         <Property name="text" type="java.lang.String" value="Radar live"/>
       </Properties>
@@ -172,7 +172,7 @@
         <Property name="text" type="java.lang.String" value="Ammo Count:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JCheckBox" name="jCheckBox1">
+    <Component class="javax.swing.JCheckBox" name="positionCheckBox">
       <Properties>
         <Property name="text" type="java.lang.String" value="Position"/>
       </Properties>
@@ -210,7 +210,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSendActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="launchMissileBtn">
+    <Component class="javax.swing.JButton" name="btnLaunchMissile">
       <Properties>
         <Property name="text" type="java.lang.String" value="Launch Missile"/>
       </Properties>

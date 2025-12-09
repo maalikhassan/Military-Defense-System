@@ -49,8 +49,10 @@ public class Observerable implements MainCaller{
         return observers;
     }
 
-    private void setBtn(int sliderValue) {//activate the buttons based on slider values received
-        //need to figure out
+    private void setBtn(int sliderValue) {//gets notified of slider value change from main and passes it to observers setbtn method,they will execute accordingly
+        for (Observer observer : observers) {
+            observer.setButton(sliderValue);
+        }
     }
     
 }

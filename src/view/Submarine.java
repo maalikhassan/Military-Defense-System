@@ -353,6 +353,28 @@ public class Submarine extends javax.swing.JFrame implements Observer,getData{
 
     @Override
     public void setButton(int value) {
+        if (positionCheckBox.isSelected()) {
+            if (value>=20) {
+                btnShoot.setEnabled(true);
+            }else{
+                btnShoot.setEnabled(false);
+            }
+            if (value>=40) {
+                btnSonar.setEnabled(true);
+            }else{
+                btnSonar.setEnabled(false);
+            }
+            if (value>=60) {
+                btnTomahawk.setEnabled(true);
+            }else{
+                btnTomahawk.setEnabled(false);
+            }
+            if (value>=80) {
+                btnTrident.setEnabled(true);
+            }else{
+                btnTrident.setEnabled(false);
+            }
+        }
     }
 
     @Override

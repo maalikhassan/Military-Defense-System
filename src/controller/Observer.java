@@ -5,7 +5,7 @@ package controller;
  *
  * @author Dell
  */
-public interface Observer {
+public interface Observer { //ABSTRACT METHODS INSIDE, the observers will later define their unique behaviours
     
     public void updateStatus(String status); //updates whether area cleared or not
     

@@ -271,9 +271,9 @@ public class MainController extends javax.swing.JFrame implements Observer{
         lblAmmo.setText(" "+array[2]);
         
         if (array[3]==0) {
-            lblPosition.setText(" Disabled");
+            lblPosition.setText(" Not in Position(Disabled)");
         }else if (array[3]==1) {
-            lblPosition.setText(" Enabled");
+            lblPosition.setText(" In Position(Enabled)");
         }
         
     }//GEN-LAST:event_collectInfoBtnActionPerformed
