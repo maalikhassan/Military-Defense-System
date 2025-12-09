@@ -136,11 +136,6 @@ public class MainController extends javax.swing.JFrame implements Observer{
         jScrollPane2.setViewportView(mainTxtArea);
 
         privateMsgCheckBox.setText("send private");
-        privateMsgCheckBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                privateMsgCheckBoxActionPerformed(evt);
-            }
-        });
 
         lblPosition.setText(" Receiving...");
 
@@ -273,6 +268,13 @@ public class MainController extends javax.swing.JFrame implements Observer{
     private void collectInfoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_collectInfoBtnActionPerformed
         // Collect information button:
         int options = optionComboBox.getSelectedIndex();
+        if (options==0) {
+            lblCount.setText("Select vehicle");
+            lblFuel.setText("Select a vehicle");
+            lblAmmo.setText("Select a vehicle");
+            lblPosition.setText("Select a vehicle");
+
+        }else{
         ArrayList<Observer> observerList = observerable.getObserver();
         
         int[] array = ((getData)observerList.get(options)).currentData();
@@ -287,19 +289,11 @@ public class MainController extends javax.swing.JFrame implements Observer{
         }else if (array[3]==1) {
             lblPosition.setText(" In Position(Enabled)");
         }
+            
+        }
+
         
     }//GEN-LAST:event_collectInfoBtnActionPerformed
-
-    private void privateMsgCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_privateMsgCheckBoxActionPerformed
-        // Enable/disable combo box to provide visual feedback for private messaging mode
-        // When checked, user must select which observer receives the message
-        // When unchecked, message broadcasts to all observers
-//        if (privateMsgCheckBox.isSelected()) {
-//            optionComboBox.setEnabled(true); // Enable selection for private messaging
-//        } else {
-//            optionComboBox.setEnabled(true); // Keep enabled for collect info functionality
-//        }
-    }//GEN-LAST:event_privateMsgCheckBoxActionPerformed
 
     /**
      * @param args the command line arguments

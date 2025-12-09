@@ -32,6 +32,8 @@ public class Submarine extends javax.swing.JFrame implements Observer,getData{
         btnTomahawk.setEnabled(false);
         btnTrident.setEnabled(false);
         
+        fuel = fuelSlider.getValue();
+        
     }
 
     /**
@@ -62,9 +64,9 @@ public class Submarine extends javax.swing.JFrame implements Observer,getData{
         jPanel1 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        energySlider = new javax.swing.JSlider();
+        fuelSlider = new javax.swing.JSlider();
         jLabel7 = new javax.swing.JLabel();
-        lblEnergyVal = new javax.swing.JLabel();
+        lblFuelVal = new javax.swing.JLabel();
         lblOxyenVal = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -151,21 +153,21 @@ public class Submarine extends javax.swing.JFrame implements Observer,getData{
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Oxygen");
 
-        energySlider.setMajorTickSpacing(20);
-        energySlider.setOrientation(javax.swing.JSlider.VERTICAL);
-        energySlider.setPaintLabels(true);
-        energySlider.setPaintTicks(true);
-        energySlider.addChangeListener(new javax.swing.event.ChangeListener() {
+        fuelSlider.setMajorTickSpacing(20);
+        fuelSlider.setOrientation(javax.swing.JSlider.VERTICAL);
+        fuelSlider.setPaintLabels(true);
+        fuelSlider.setPaintTicks(true);
+        fuelSlider.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                energySliderStateChanged(evt);
+                fuelSliderStateChanged(evt);
             }
         });
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("Energy");
+        jLabel7.setText("Fuel");
 
-        lblEnergyVal.setText("jLabel2");
+        lblFuelVal.setText("jLabel2");
 
         lblOxyenVal.setText("jLabel2");
 
@@ -184,18 +186,21 @@ public class Submarine extends javax.swing.JFrame implements Observer,getData{
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(14, 14, 14)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(positionCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jLabel4)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(ammoCountSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jLabel3)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(soldierCountSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGap(135, 135, 135)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(positionCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(181, 181, 181))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jLabel4)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(ammoCountSpinner))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jLabel3)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(soldierCountSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGap(113, 113, 113)))))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(btnSonar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnTomahawk, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
@@ -209,7 +214,7 @@ public class Submarine extends javax.swing.JFrame implements Observer,getData{
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(energySlider, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(fuelSlider, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(22, 22, 22)
@@ -219,7 +224,7 @@ public class Submarine extends javax.swing.JFrame implements Observer,getData{
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblOxyenVal)
                                     .addComponent(oxygenSlider, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addComponent(lblEnergyVal))
+                    .addComponent(lblFuelVal))
                 .addContainerGap())
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
@@ -265,10 +270,10 @@ public class Submarine extends javax.swing.JFrame implements Observer,getData{
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(oxygenSlider, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(energySlider, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(fuelSlider, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(3, 3, 3)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblEnergyVal)
+                            .addComponent(lblFuelVal)
                             .addComponent(lblOxyenVal))))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -297,10 +302,11 @@ public class Submarine extends javax.swing.JFrame implements Observer,getData{
         ammo = (int)ammoCountSpinner.getValue();
     }//GEN-LAST:event_ammoCountSpinnerStateChanged
 
-    private void energySliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_energySliderStateChanged
+    private void fuelSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_fuelSliderStateChanged
         // TODO add your handling code here:
-        lblEnergyVal.setText(""+energySlider.getValue());
-    }//GEN-LAST:event_energySliderStateChanged
+        lblFuelVal.setText(""+fuelSlider.getValue());
+        fuel = fuelSlider.getValue();
+    }//GEN-LAST:event_fuelSliderStateChanged
 
     private void oxygenSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_oxygenSliderStateChanged
         // TODO add your handling code here:
@@ -324,7 +330,7 @@ public class Submarine extends javax.swing.JFrame implements Observer,getData{
     private javax.swing.JButton btnSonar;
     private javax.swing.JButton btnTomahawk;
     private javax.swing.JButton btnTrident;
-    private javax.swing.JSlider energySlider;
+    private javax.swing.JSlider fuelSlider;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -333,7 +339,7 @@ public class Submarine extends javax.swing.JFrame implements Observer,getData{
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblEnergyVal;
+    private javax.swing.JLabel lblFuelVal;
     private javax.swing.JLabel lblOxyenVal;
     private javax.swing.JLabel lblStatus;
     private javax.swing.JTextField msgtextfield;
@@ -377,6 +383,7 @@ public class Submarine extends javax.swing.JFrame implements Observer,getData{
 
     @Override
     public int[] currentData() {
-        return null;
+        int[] data ={soldiers,fuel,ammo,position};
+        return data;
     }
 }
