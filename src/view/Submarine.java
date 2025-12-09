@@ -4,6 +4,9 @@ package view;
 import controller.Observer;
 import controller.Observerable;
 import controller.getData;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.Timer;
 
 /**
  *
@@ -33,6 +36,19 @@ public class Submarine extends javax.swing.JFrame implements Observer,getData{
         btnTrident.setEnabled(false);
         
         fuel = fuelSlider.getValue();
+        
+        // Set spinner models to prevent negative values (min=0, max=100, step=1)
+        soldierCountSpinner.setModel(new javax.swing.SpinnerNumberModel(80, 0, 100, 1));
+        ammoCountSpinner.setModel(new javax.swing.SpinnerNumberModel(500, 0, 1000, 1));
+        
+        Timer timer = new Timer(4000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                fuelSlider.setValue(fuelSlider.getValue()-1);
+                oxygenSlider.setValue(oxygenSlider.getValue()-1);
+            }
+        });
+        timer.start();
         
     }
 
@@ -76,10 +92,25 @@ public class Submarine extends javax.swing.JFrame implements Observer,getData{
         jLabel1.setText("Status:");
 
         btnShoot.setText("Shoot");
+        btnShoot.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnShootActionPerformed(evt);
+            }
+        });
 
         btnSonar.setText("Activate Sonar");
+        btnSonar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSonarActionPerformed(evt);
+            }
+        });
 
         btnTomahawk.setText("Launch Tomahawk Missile");
+        btnTomahawk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTomahawkActionPerformed(evt);
+            }
+        });
 
         lblStatus.setText("Awaiting intel...");
 
@@ -110,6 +141,7 @@ public class Submarine extends javax.swing.JFrame implements Observer,getData{
         oxygenSlider.setOrientation(javax.swing.JSlider.VERTICAL);
         oxygenSlider.setPaintLabels(true);
         oxygenSlider.setPaintTicks(true);
+        oxygenSlider.setValue(80);
         oxygenSlider.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 oxygenSliderStateChanged(evt);
@@ -128,6 +160,11 @@ public class Submarine extends javax.swing.JFrame implements Observer,getData{
         });
 
         btnTrident.setText("Launch Trident-3 Missile");
+        btnTrident.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTridentActionPerformed(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(102, 102, 0));
 
@@ -158,6 +195,7 @@ public class Submarine extends javax.swing.JFrame implements Observer,getData{
         fuelSlider.setOrientation(javax.swing.JSlider.VERTICAL);
         fuelSlider.setPaintLabels(true);
         fuelSlider.setPaintTicks(true);
+        fuelSlider.setValue(80);
         fuelSlider.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 fuelSliderStateChanged(evt);
@@ -168,9 +206,9 @@ public class Submarine extends javax.swing.JFrame implements Observer,getData{
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Fuel");
 
-        lblFuelVal.setText("50");
+        lblFuelVal.setText("80");
 
-        lblOxyenVal.setText("50");
+        lblOxyenVal.setText("80");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -282,7 +320,7 @@ public class Submarine extends javax.swing.JFrame implements Observer,getData{
         );
 
         pack();
-        setLocation(700, 450); // Bottom-right corner
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void positionCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_positionCheckBoxActionPerformed
@@ -290,6 +328,26 @@ public class Submarine extends javax.swing.JFrame implements Observer,getData{
         position = positionCheckBox.isSelected()?1:0;
         setButton(sliderValue);
     }//GEN-LAST:event_positionCheckBoxActionPerformed
+
+    private void btnShootActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShootActionPerformed
+        observerable.sendMessage("Submarine: Firing torpedoes!");
+        textArea.append("------[ACTION] Torpedoes away!------\n");
+    }//GEN-LAST:event_btnShootActionPerformed
+
+    private void btnSonarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSonarActionPerformed
+        observerable.sendMessage("Submarine: Sonar activated - scanning area!");
+        textArea.append("------[ACTION] Sonar ping active!------\n");
+    }//GEN-LAST:event_btnSonarActionPerformed
+
+    private void btnTomahawkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTomahawkActionPerformed
+        observerable.sendMessage("Submarine: Launching Tomahawk cruise missile!");
+        textArea.append("------[ACTION] Tomahawk missile launched!------\n");
+    }//GEN-LAST:event_btnTomahawkActionPerformed
+
+    private void btnTridentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTridentActionPerformed
+        observerable.sendMessage("Submarine: Launching Trident-3 ballistic missile!");
+        textArea.append("------[ACTION] Trident-3 missile launched!------\n");
+    }//GEN-LAST:event_btnTridentActionPerformed
 
     private void soldierCountSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_soldierCountSpinnerStateChanged
         // TODO add your handling code here:

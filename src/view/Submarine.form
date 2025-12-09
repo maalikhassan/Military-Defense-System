@@ -225,6 +225,7 @@
         <Property name="orientation" type="int" value="1"/>
         <Property name="paintLabels" type="boolean" value="true"/>
         <Property name="paintTicks" type="boolean" value="true"/>
+        <Property name="value" type="int" value="80"/>
       </Properties>
       <Events>
         <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="oxygenSliderStateChanged"/>
@@ -313,6 +314,7 @@
         <Property name="orientation" type="int" value="1"/>
         <Property name="paintLabels" type="boolean" value="true"/>
         <Property name="paintTicks" type="boolean" value="true"/>
+        <Property name="value" type="int" value="80"/>
       </Properties>
       <Events>
         <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="fuelSliderStateChanged"/>
@@ -329,12 +331,12 @@
     </Component>
     <Component class="javax.swing.JLabel" name="lblFuelVal">
       <Properties>
-        <Property name="text" type="java.lang.String" value="50"/>
+        <Property name="text" type="java.lang.String" value="80"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblOxyenVal">
       <Properties>
-        <Property name="text" type="java.lang.String" value="50"/>
+        <Property name="text" type="java.lang.String" value="80"/>
       </Properties>
     </Component>
   </SubComponents>

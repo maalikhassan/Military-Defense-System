@@ -7,7 +7,10 @@ package view;
 import controller.Observer;
 import controller.Observerable;
 import controller.getData;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Observable;
+import javax.swing.Timer;
 
 /**
  *
@@ -37,6 +40,18 @@ public class Tank extends javax.swing.JFrame implements Observer,getData {
         btnLaunchMissile.setEnabled(false);
         
         fuel = fuelSlider.getValue();
+        
+        // Set spinner models to prevent negative values (min=0, max=100, step=1)
+        soldierCountSpinner.setModel(new javax.swing.SpinnerNumberModel(30, 0, 100, 1));
+        ammoCountSpinner.setModel(new javax.swing.SpinnerNumberModel(300, 0, 1000, 1));
+        
+        Timer timer = new Timer(4000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                fuelSlider.setValue(fuelSlider.getValue()-1);
+            }
+        });
+        timer.start();
     }
 
     /**
@@ -75,10 +90,25 @@ public class Tank extends javax.swing.JFrame implements Observer,getData {
         jLabel1.setText("Status:");
 
         btnShoot.setText("Shoot");
+        btnShoot.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnShootActionPerformed(evt);
+            }
+        });
 
         btnRotateShoot.setText("Rotate shoot");
+        btnRotateShoot.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRotateShootActionPerformed(evt);
+            }
+        });
 
         btnRadarLive.setText("Radar live");
+        btnRadarLive.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRadarLiveActionPerformed(evt);
+            }
+        });
 
         statusLbl.setText("Awaiting intel...");
 
@@ -109,6 +139,7 @@ public class Tank extends javax.swing.JFrame implements Observer,getData {
         fuelSlider.setOrientation(javax.swing.JSlider.VERTICAL);
         fuelSlider.setPaintLabels(true);
         fuelSlider.setPaintTicks(true);
+        fuelSlider.setValue(90);
         fuelSlider.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 fuelSliderStateChanged(evt);
@@ -127,6 +158,11 @@ public class Tank extends javax.swing.JFrame implements Observer,getData {
         });
 
         btnLaunchMissile.setText("Launch Missile");
+        btnLaunchMissile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLaunchMissileActionPerformed(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(102, 102, 0));
 
@@ -241,7 +277,7 @@ public class Tank extends javax.swing.JFrame implements Observer,getData {
         );
 
         pack();
-        setLocation(50, 450); // Bottom-left corner
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSendActionPerformed
@@ -255,6 +291,26 @@ public class Tank extends javax.swing.JFrame implements Observer,getData {
         position = positionCheckBox.isSelected()? 1:0;
         setButton(sliderValue);
     }//GEN-LAST:event_positionCheckBoxActionPerformed
+
+    private void btnShootActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShootActionPerformed
+        observerable.sendMessage("Tank: Firing main cannon!");
+        textArea.append("------[ACTION] Main cannon fired!------\n");
+    }//GEN-LAST:event_btnShootActionPerformed
+
+    private void btnRotateShootActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRotateShootActionPerformed
+        observerable.sendMessage("Tank: Rotating turret and firing!");
+        textArea.append("------[ACTION] Turret rotated and fired!------\n");
+    }//GEN-LAST:event_btnRotateShootActionPerformed
+
+    private void btnRadarLiveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRadarLiveActionPerformed
+        observerable.sendMessage("Tank: Radar system activated!");
+        textArea.append("------[ACTION] Radar online!------\n");
+    }//GEN-LAST:event_btnRadarLiveActionPerformed
+
+    private void btnLaunchMissileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaunchMissileActionPerformed
+        observerable.sendMessage("Tank: Launching guided missile!");
+        textArea.append("------[ACTION] Missile launched!------\n");
+    }//GEN-LAST:event_btnLaunchMissileActionPerformed
 
     private void soldierCountSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_soldierCountSpinnerStateChanged
         // TODO add your handling code here:

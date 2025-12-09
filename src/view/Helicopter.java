@@ -4,6 +4,9 @@ package view;
 import controller.Observer;
 import controller.Observerable;
 import controller.getData;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.Timer;
 
 
 public class Helicopter extends javax.swing.JFrame implements Observer,getData{//since its an observer it should have behaviour , and should be able to pass data to observerable
@@ -29,6 +32,18 @@ public class Helicopter extends javax.swing.JFrame implements Observer,getData{/
         laserBtn.setEnabled(false);
         
         fuel = sliderFuel.getValue();
+        
+        // Set spinner models to prevent negative values (min=0, max=100, step=1)
+        spinnerSoldier.setModel(new javax.swing.SpinnerNumberModel(8, 0, 100, 1));
+        spinnerAmmo.setModel(new javax.swing.SpinnerNumberModel(200, 0, 1000, 1));
+        
+        Timer timer = new Timer(4000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                sliderFuel.setValue(sliderFuel.getValue()-1);
+            }
+        });
+        timer.start();
     }
 
     /**
@@ -66,10 +81,25 @@ public class Helicopter extends javax.swing.JFrame implements Observer,getData{/
         jLabel1.setText("Status:");
 
         shootBtn.setText("Shoot");
+        shootBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                shootBtnActionPerformed(evt);
+            }
+        });
 
         missileBtn.setText("Launch Missile");
+        missileBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                missileBtnActionPerformed(evt);
+            }
+        });
 
         laserBtn.setText("Shoot Laser");
+        laserBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                laserBtnActionPerformed(evt);
+            }
+        });
 
         statusLbl.setText("Awaiting intel...");
 
@@ -100,6 +130,7 @@ public class Helicopter extends javax.swing.JFrame implements Observer,getData{/
         sliderFuel.setOrientation(javax.swing.JSlider.VERTICAL);
         sliderFuel.setPaintLabels(true);
         sliderFuel.setPaintTicks(true);
+        sliderFuel.setValue(95);
         sliderFuel.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 sliderFuelStateChanged(evt);
@@ -229,7 +260,7 @@ public class Helicopter extends javax.swing.JFrame implements Observer,getData{/
         );
 
         pack();
-        setLocation(700, 50); // Top-right corner
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void positionCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_positionCheckBoxActionPerformed
@@ -260,6 +291,22 @@ public class Helicopter extends javax.swing.JFrame implements Observer,getData{/
         // TODO add your handling code here:
         fuel = sliderFuel.getValue();
     }//GEN-LAST:event_sliderFuelStateChanged
+
+    private void shootBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shootBtnActionPerformed
+        observerable.sendMessage("Helicopter: Firing standard weapons!");
+        // Display in own text area
+        textArea.append("------[ACTION] Firing standard weapons!------\n");
+    }//GEN-LAST:event_shootBtnActionPerformed
+
+    private void missileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_missileBtnActionPerformed
+        observerable.sendMessage("Helicopter: Launching missiles!");
+        textArea.append("------[ACTION] Missile launched!-------\n");
+    }//GEN-LAST:event_missileBtnActionPerformed
+
+    private void laserBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_laserBtnActionPerformed
+        observerable.sendMessage("Helicopter: Firing laser weapons!");
+        textArea.append("------[ACTION] Laser fired!------ \n");
+    }//GEN-LAST:event_laserBtnActionPerformed
 
     /**
      * @param args the command line arguments
