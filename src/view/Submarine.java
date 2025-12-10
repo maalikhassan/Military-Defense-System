@@ -35,11 +35,17 @@ public class Submarine extends javax.swing.JFrame implements Observer,getData{
         btnTomahawk.setEnabled(false);
         btnTrident.setEnabled(false);
         
-        // Set spinner models FIRST to prevent negative values
+        // Add action listeners for weapon buttons (MUST be after initComponents)
+        btnShoot.addActionListener(evt -> btnShootActionPerformed(evt));
+        btnSonar.addActionListener(evt -> btnSonarActionPerformed(evt));
+        btnTomahawk.addActionListener(evt -> btnTomahawkActionPerformed(evt));
+        btnTrident.addActionListener(evt -> btnTridentActionPerformed(evt));
+        
+        // Set spinner models to prevent negative values
         soldierCountSpinner.setModel(new javax.swing.SpinnerNumberModel(80, 0, 100, 1));
         ammoCountSpinner.setModel(new javax.swing.SpinnerNumberModel(500, 0, 1000, 1));
         
-        // THEN get the initial values from the models
+        // get the initial values from the models
         soldiers = (int) soldierCountSpinner.getValue();
         ammo = (int) ammoCountSpinner.getValue();
         fuel = fuelSlider.getValue();
@@ -95,10 +101,25 @@ public class Submarine extends javax.swing.JFrame implements Observer,getData{
         jLabel1.setText("Status:");
 
         btnShoot.setText("Shoot");
+        btnShoot.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnShootActionPerformed(evt);
+            }
+        });
 
         btnSonar.setText("Activate Sonar");
+        btnSonar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSonarActionPerformed(evt);
+            }
+        });
 
         btnTomahawk.setText("Launch Tomahawk Missile");
+        btnTomahawk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTomahawkActionPerformed(evt);
+            }
+        });
 
         lblStatus.setText("Awaiting intel...");
 

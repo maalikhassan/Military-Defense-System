@@ -39,11 +39,11 @@ public class Tank extends javax.swing.JFrame implements Observer,getData {
         btnRadarLive.setEnabled(false);
         btnLaunchMissile.setEnabled(false);
         
-        // Set spinner models FIRST to prevent negative values
+        // Set spinner models to prevent negative values
         soldierCountSpinner.setModel(new javax.swing.SpinnerNumberModel(30, 0, 100, 1));
         ammoCountSpinner.setModel(new javax.swing.SpinnerNumberModel(300, 0, 1000, 1));
         
-        // THEN get the initial values from the models
+        // get the initial values from the models
         soldiers = (int) soldierCountSpinner.getValue();
         ammo = (int) ammoCountSpinner.getValue();
         fuel = fuelSlider.getValue();

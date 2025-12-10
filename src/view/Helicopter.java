@@ -31,11 +31,16 @@ public class Helicopter extends javax.swing.JFrame implements Observer,getData{/
         missileBtn.setEnabled(false);
         laserBtn.setEnabled(false);
         
-        // Set spinner models FIRST to prevent negative values
+        // Add action listeners for weapon buttons (MUST be after initComponents)
+        shootBtn.addActionListener(evt -> shootBtnActionPerformed(evt));
+        missileBtn.addActionListener(evt -> missileBtnActionPerformed(evt));
+        laserBtn.addActionListener(evt -> laserBtnActionPerformed(evt));
+        
+        // Set spinner models to prevent negative values
         spinnerSoldier.setModel(new javax.swing.SpinnerNumberModel(8, 0, 100, 1));
         spinnerAmmo.setModel(new javax.swing.SpinnerNumberModel(200, 0, 1000, 1));
         
-        // THEN get the initial values from the models
+        // get the initial values from the models
         soldiers = (int) spinnerSoldier.getValue();
         ammo = (int) spinnerAmmo.getValue();
         fuel = sliderFuel.getValue();
@@ -172,6 +177,7 @@ public class Helicopter extends javax.swing.JFrame implements Observer,getData{/
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel2.setText("Fuel:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
