@@ -4,16 +4,12 @@
 
 An enterprise-grade military command and control system showcasing advanced Java development skills, comprehensive OOP implementation, and production-ready software architecture. Built with Java Swing and implementing the Observer design pattern for real-time multi-unit coordination.
 
-## 🎯 Project Highlights
+## 🎯 Key Highlights
 
-This project demonstrates **professional-level Java expertise** through:
-
-- ✅ **Complete OOP Implementation** - All four pillars of OOP (Encapsulation, Inheritance, Polymorphism, Abstraction)
-- ✅ **Design Patterns** - Observer pattern for event-driven architecture
-- ✅ **Interface-Based Design** - Loose coupling and high cohesion
-- ✅ **Real-Time Event Handling** - Asynchronous state management across distributed components
-- ✅ **Clean Architecture** - Separation of concerns (MVC pattern)
-- ✅ **Production Practices** - Defensive programming, input validation, resource management
+- ✅ **Complete OOP Implementation** - All four pillars with practical examples
+- ✅ **Observer Design Pattern** - Event-driven architecture for real-time coordination
+- ✅ **SOLID Principles** - Professional software engineering practices
+- ✅ **Modern Java Features** - Lambdas, generics, collections framework
 
 ## 📋 Overview
 
@@ -65,11 +61,7 @@ The system simulates a military defense command center managing three distinct m
 - **Status Updates**: Real-time display of area clearance status
 - **Action Logging**: All weapon actions are logged in the unit's text area
 
-## 🏗️ Software Architecture & Design Excellence
-
-### Object-Oriented Programming Principles
-
-This project comprehensively demonstrates all four pillars of OOP:
+## 🏗️ Software Architecture & Design Patterns
 
 #### 1. **Encapsulation** 🔒
 - **Private Data Members**: All unit attributes (`soldiers`, `ammo`, `fuel`, `position`) are encapsulated as private fields
@@ -157,43 +149,11 @@ public class Observerable {
 }
 ```
 
-### Architectural Layers
+### Architecture Layers (MVC Pattern)
 
-#### 1. **Controller Layer** (`controller` package)
-- **Interfaces**: Define contracts for communication and data access
-- **Observable Subject**: Manages observer registration and notifications
-- **Separation of Concerns**: Business logic separated from presentation
-
-#### 2. **View Layer** (`view` package)
-- **GUI Components**: Java Swing implementation for user interaction
-- **Event Handlers**: User action processing and state updates
-- **MVC Pattern**: Views observe model changes and update accordingly
-
-#### 3. **Model Layer** (`model` package)
-- **Application Bootstrap**: `Demo.java` serves as entry point
-- **Dependency Injection**: Manual DI pattern for component wiring
-- **Initialization Logic**: System setup and configuration
-
-### Key Architectural Decisions
-
-#### Interface-Based Design
-```java
-public interface Observer {
-    void updateStatus(String status);
-    void setButton(int value);
-    void setMessage(String message);
-    void privateMessage();
-}
-```
-**Rationale**: Enables polymorphism, testability, and extensibility
-
-#### Dependency Injection
-```java
-public Helicopter(Observerable observerable) {
-    this.observerable = observerable;  // Constructor injection
-}
-```
-**Rationale**: Reduces coupling, improves testability, enables flexibility
+- **Controller**: Interfaces for communication (`Observer`, `getData`, `MainCaller`), observable subject for notifications
+- **View**: Java Swing GUIs with event handlers for all military units
+- **Model**: Application bootstrap and initialization logic
 
 ### Project Structure
 
@@ -233,14 +193,18 @@ Military Defense System/
    ```
 
 2. **Open in NetBeans**
-   - Open NetBeans IDE
-   - File → Open Project
-   - Navigate to the project folder
-   - Select and open the project
+   - File → Open Project → Navigate to folder
 
-3. **Build the project**
-   - Right-click on the project
-   - SAdvanced Java Concepts Demonstrated
+3. **Build and Run**
+   - Right-click project → Clean and Build → Run
+
+**Alternative (Command Line)**:
+```bash
+javac -d build/classes src/**/*.java
+java -cp build/classes model.Demo
+```
+
+### Advanced Java Concepts Demonstrated
 
 ### Core Java Proficiency
 
@@ -291,207 +255,37 @@ private void playSound(String soundFile) {
 - Defensive programming practices
 - Resource management
 
-### Software Engineering Principles
+### SOLID Principles Applied
 
-#### SOLID Principles
+- **SRP**: Each class has single responsibility (e.g., `Observerable` manages observers only)
+- **OCP**: Extensible for new unit types without modifying existing code
+- **LSP**: Any `Observer` implementation is substitutable
+- **ISP**: Focused interfaces (`Observer`, `getData`, `MainCaller`)
+- **DIP**: High-level modules depend on abstractions, not concrete classes
 
-**Single Responsibility Principle (SRP)**
-- Each class has one clear responsibility
-- `Observerable`: Manages observers only
-- `Helicopter/Tank/Submarine`: Manage their specific unit state
+## 🛠️ Technology Stack
 
-**Open/Closed Principle (OCP)**
-- System open for extension (new unit types) without modification
-- Adding new observers doesn't require changing `Observerable`
+- **Language**: Java SE 8+ (lambdas, generics, collections)
+- **GUI**: Java Swing with FlatLaf theme
+- **Build**: Apache Ant
+- **IDE**: Apache NetBeans
+- **APIs**: javax.swing.*, java.util.*, javax.sound.sampled.*
 
-**Liskov Substitution Principle (LSP)**
-- Any `Observer` can be substituted for another
-- Polymorphic treatment ensures consistent behavior
+## 💼 Key Competencies Demonstrated
 
-**Interface Segregation Principle (ISP)**
-- Multiple focused interfaces (`Observer`, `getData`, `MainCaller`)
-- Clients depend only on methods they use
+**Object-Oriented Design**: All 4 OOP pillars, Observer pattern, interface-driven architecture
 
-**Dependency Inversion Principle (DIP)**
-- High-level modules depend on abstractions (interfaces)
-- `Observerable` depends on `Observer` interface, not concrete classes
+**Java Proficiency**: Modern features (lambdas, generics), Collections Framework, event-driven programming, exception handling
 
-#### Design Principles
+**Software Engineering**: MVC pattern, SOLID principles, separation of concerns, defensive programming
 
-**DRY (Don't Repeat Yourself)**
-- Common observer logic centralized in `Observerable`
-- Weapon enabling logic abstracted in `setButton()` method
+**Project Complexity**: 1500+ LOC, intermediate to advanced level, production-quality architecture
 
-**Separation of Concerns**
-- UI code separated from business logic
-- Observer management separated from unit-specific behavior
+## � Technical Notes
 
-**Defensive Programming**
-```java
-spinnerSoldier.setModel(new SpinnerNumberModel(8, 0, 100, 1));  // Min/max validation
-if (positionCheckBox.isSelected()) {  // State validation before action
-    shootBtn.setEnabled(value >= 20);
-}
-```
+**Scalability**: Easy to extend with new unit types (implement Observer interface), supports broadcast and targeted messaging, modular architecture
 
-### Advanced Features
-
-#### State Management
-- Position-based weapon locking
-- Dynamic buical Stack
-
-### Core Technologies
-- **Language**: Java SE 8+ (Demonstrating modern Java features)
-- **GUI Framework**: Java Swing (javax.swing.*)
-- **Concurrency**: javax.swing.Timer for scheduled tasks
-- **Collections**: Java Collections Framework (ArrayList, generics)
-
-### Development Tools
-- **IDE**: Apache NetBeans (GUI Builder, Refactoring tools)
-- **Build Tool**: Apache Ant (build.xml automation)
-- **UI Theme**: FlatLaf Look and Feel (Modern UI/UX)
-- **Version Control**: Git
-
-### Java APIs & Libraries Utilized
-- `javax.swing.*` - GUI components and event handling
-- `java.awt.*` - Layout managers and graphics
-- `java.util.*` - Collections, ArrayList, Timer
-- `java.io.*` - File I/O for sound effects (prepared)
-- `javax.sound.sampled.*` - Audio playback infrastructure (ready for integration)
-
-## 💼 Skills Demonstrated
-
-### For Technical Recruiters & Hiring Managers
-
-This project showcases production-ready skills:
-
-✅ **Object-Oriented Design**
-- Complete implementation of all 4 OOP pillars
-- Design pattern application (Observer)
-- Interface-driven architecture
-
-✅ **Java Expertise**
-- Modern Java 8+ features (lambdas, generics)
-- Collections Framework proficiency
-- Event-driven programming
-- Exception handling and defensive coding
-
-✅ **Software Architecture**
-- MVC pattern implementation
-- Separation of concerns
-- Scalable, maintainable code structure
-- SOLID principles adherence
-� Learning Outcomes & Competencies
-
-Through this project, I have demonstrated mastery of:
-
-1. **Object-Oriented Analysis & Design**
-   - Identifying appropriate abstractions
-   - Designing class hierarchies and interfaces
-   - Applying design patterns to solve real problems
-
-2. **Java Programming Language**
-   - Syntax and semantics mastery
-   - Core API utilization (Collections, I/O, GUI)
-   - Modern features (lambdas, generics, enhanced for loops)
-
-3. **Software Engineering Practices**
-   - Modular design and code organization
-   - Documentation and maintainability
-   - Version control and project management
-
-4. **Problem-Solving & Critical Thinking**
-   - Breaking complex problems into manageable components
-   - Designing elegant solutions to coordination challenges
-   - Debugging and troubleshooting systematic issues
-
-## 🎓 Academic & Professional Context
-
-**Project Type**: Object-Oriented Programming Demonstration  
-**Complexity Level**: Intermediate to Advanced  
-**Lines of Code**: 1500+ (excluding generated GUI code)  
-**Development Time**: Iterative development with continuous refinement  
-
-**Key Differentiators**:
-- Not a simple CRUD application - demonstrates complex event-driven coordination
-- Production-quality code structure and documentation
-- Real-world applicable design patterns
-- Scalable architecture ready for enterprise extension
-
-## 👨‍💻 Author
-
-**Maalik Hassan**
-- GitHub: [@maalikhassan](https://github.com/maalikhassan)
-- **Specialization**: Object-Oriented Programming, Java Development, Software Architecture
-- **Focus**: Clean code, design patterns, and enterprise application development
-
-## 🙏 Acknowledgments
-
-- **Design Patterns**: Gang of Four (GoF) - Observer Pattern implementation
-- **UI Framework**: FlatLaf library for modern, professional look and feel
-- **Architecture Inspiration**: Enterprise Java patterns and best practices
-- **Development Environment**: Apache NetBeans IDE community
-
-## 📞 Contact & Collaboration
-
-I'm open to discussing:
-- Object-oriented design approaches
-- Java best practices and patterns
-- Software architecture decisions
-- Potential improvements and extensions to this project
-
-Feel free to explore the code, raise issues, or suggest enhancements!
-
----
-
-## 📝 Technical Notes
-
-**Code Quality Standards**:
-- ✅ Consistent naming conventions (camelCase for variables, PascalCase for classes)
-- ✅ Comprehensive inline documentation
-- ✅ Modular methods with single responsibilities
-- ✅ Error handling and input validation
-- ✅ Clean separation of generated vs. custom code
-
-**Scalability Considerations**:
-- Easy to add new unit types (just implement Observer interface)
-- Message routing logic supports broadcast and targeted communication
-- Resource management extensible to new resource types
-- UI components can be enhanced without breaking core logic
-
----
-
-> **Note**: This is an educational project demonstrating software engineering principles and Java programming expertise. It simulates a command and control system for learning purposes only
-✅ **Problem-Solving**
-- Real-time synchronization challenges
-- State management complexity
-- Dynamic behavior coordination
-- Multi-component communicatioetMessage(message);
-} else {
-    // Broadcast to all units
-    observerable.sendMessage(message);
-}
-```
-- Conditional routing logic
-- Broadcast vs. unicast messaging
-
-#### Data Transfer
-```java
-public int[] currentData() {
-    return new int[]{soldiers, fuel, ammo, position};
-}
-```
-- Array-based data structures
-- Efficient primitive data transfer
-- Type casting and conversions
-
-```bash
-# Compile
-javac -d build/classes src/**/*.java
-
-# Run
-java -cp build/classes model.Demo
-```
+**Code Quality**: Consistent naming conventions, comprehensive documentation, modular design, error handling, input validation
 
 ## 🎮 Usage Guide
 
@@ -605,29 +399,14 @@ setLocation(x, y);  // x, y are pixel coordinates from top-left of screen
 
 ## 🤝 Contributing
 
-Contributions are welcome! Areas for improvement:
-- Add actual sound effects
-- Implement persistent data storage
-- Add unit health/damage system
-- Create mission scenarios
-- Add unit movement on map
-- Implement network multiplayer
+Contributions welcome! Potential enhancements: sound effects, persistent storage, health/damage system, mission scenarios, map-based movement, network multiplayer.
 
-## 📄 License
+## 👨‍💻 Author & Acknowledgments
 
-This project is created for educational purposes as part of a software engineering course.
+**Maalik Hassan** - [@maalikhassan](https://github.com/maalikhassan)
 
-## 👨‍💻 Author
-
-**Maalik Hassan**
-- GitHub: [@maalikhassan](https://github.com/maalikhassan)
-
-## 🙏 Acknowledgments
-
-- Observer pattern implementation inspired by Gang of Four design patterns
-- FlatLaf library for modern UI theme
-- NetBeans community for IDE support
+Inspired by Gang of Four design patterns | FlatLaf UI library | NetBeans IDE community
 
 ---
 
-**Note**: This is a simulation system for educational purposes. No actual military systems or data are involved.
+**Note**: Educational project demonstrating software engineering principles. Simulates a command and control system for learning purposes only.
